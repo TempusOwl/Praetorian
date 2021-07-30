@@ -1,0 +1,7 @@
+# Exludes uploading your secrets file (inncludes token) via Git. 
+# Do not modify/remove/move this file unless you know what you are doing.
+bot_config/secrets.json
+
+# Caches
+utils/__pycache__
+cogs/__pycache__/
