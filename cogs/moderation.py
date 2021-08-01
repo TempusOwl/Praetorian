@@ -71,7 +71,7 @@ class Moderation(commands.Cog):
         ussage='<user> [time]'
     )
     @commands.has_permissions(manage_roles=True)
-    async def mute(self, ctx, member: discord.Member, *, time: TimeConverter=None):
+    async def mute(self, ctx, member: discord.Member, *, time: TimeConverter = None):
         role = discord.utils.get(ctx.guild.roles, name="Muted")
         if not role:
             await ctx.send("No muted role was found! Please create one called `Muted`")
@@ -83,7 +83,7 @@ class Moderation(commands.Cog):
                 return
         except KeyError:
             pass
-        
+
         data = {
             '_id': member.id,
             'mutedAt': datetime.datetime.now(),
@@ -93,17 +93,17 @@ class Moderation(commands.Cog):
         }
         await self.bot.mutes.upsert(data)
         self.bot.muted_users[member.id] = data
-       
-        embed = discord.Embed(description=f":Muted: {message.author.mention} **ID (*{message.author.id}*)**",
-                  colour=15158332,
-                  footer=f"UserID {message.author.id}.",
-                  timestamp=datetime.datetime.utcnow())
+
+        embed = discord.Embed(description=f":Muted: {ctx.message.author.mention} **ID (*{ctx.message.author.id}*)**",
+                              colour=15158332,
+                              footer=f"UserID {ctx.message.author.id}.",
+                              timestamp=datetime.datetime.utcnow())
         embed.set_author(
-        name=f"User Muted", icon_url=f"{message.author.avatar_url}")
+            name=f"User Muted", icon_url=f"{ctx.message.author.avatar_url}")
         embed.set_footer(text=f"Preformed By = {ctx.author.id}")
         fields = [(f"Mute Length: {time}", False),
-                    (f"Username: {member.display_name}", False),
-                    (f"User ID: {member.id}", False)]
+                  (f"Username: {member.display_name}", False),
+                  (f"User ID: {member.id}", False)]
 
         await member.add_roles(role)
 

@@ -31,7 +31,7 @@ async def get_prefix(bot, message):
     try:
         data = await bot.config.find(message.guild.id)
 
-        # Make sure we have a useable prefix
+        # Prefix Check
         if not data or "prefix" not in data:
             return commands.when_mentioned_or(bot.DEFAULTPREFIX)(bot, message)
         return commands.when_mentioned_or(data["prefix"])(bot, message)
