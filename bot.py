@@ -185,6 +185,7 @@ if __name__ == "__main__":
     bot.config = Document(bot.db, "config")
     bot.mutes = Document(bot.db, "mutes")
     bot.warns = Document(bot.db, "warns")
+    bot.experience = Document(bot.db, "experience")
     bot.invites = Document(bot.db, "invites")
     bot.command_usage = Document(bot.db, "command_usage")
     bot.reaction_roles = Document(bot.db, "reaction_roles")
